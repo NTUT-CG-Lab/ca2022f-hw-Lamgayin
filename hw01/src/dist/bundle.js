@@ -9425,9 +9425,9 @@ exports.ViewLogicalMaxRight = 2.0;
 exports.ViewLogicalMaxBottom = -2.0;
 exports.ViewLogicalMaxTop = 2.0;
 exports.ResourcesPath = '../src/Resources/'
-exports.BackImageName = '../src/Resources/back_class_normal.png';
-exports.GearImageName = '../src/Resources/icon_gear.png';
-exports.PowerImageName = '../src/Resources/CloseNormal.png';
+exports.BackImageName = 'back_class_normal.png';
+exports.GearImageName = 'Resources/icon_gear.png';
+exports.PowerImageName = 'Resources/CloseNormal.png';
 exports.ModelDir = [
     'miku_sample_t04'
 ];
