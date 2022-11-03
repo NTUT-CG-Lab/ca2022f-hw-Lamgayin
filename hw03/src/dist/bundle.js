@@ -9429,7 +9429,7 @@
     exports.GearImageName = 'icon_gear.png';
     exports.PowerImageName = 'CloseNormal.png';
     exports.ModelDir = [
-        'haru'
+        'Haru'
     ];
     exports.ModelDirSize = exports.ModelDir.length;
     exports.MotionGroupIdle = 'Idle';
