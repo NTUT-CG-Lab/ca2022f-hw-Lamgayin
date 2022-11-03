@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1900">
+  <title>TypeScript HTML App</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+  <!-- Pollyfill script -->
+  <script src="https://unpkg.com/core-js-bundle@3.6.1/minified.js"></script>
+  <!-- Live2DCubismCore script -->
+  <script src="../src/Core/live2dcubismcore.js"></script>
+
+  <script src="./dist/bundle.js"></script>
+
+
+</head>
+
+<body>
+  <div class="Sliders">
+    <div class="col">
+      <div id="div reset" style="border-width:1px; border-style:solid;align-items:center;">
+        <button onclick="resetParam()" class="resetParam">Reset All Parameters</button>
+      </div>
+
+      <div id="div ParamAngleX" style="border-width:1px; border-style:solid;">
+        <h4>ParamAngleX:<text id="ParamAngleX_text">0</text></h4>
+        <span>-30</span>
+        <input id="ParamAngleX" type="range" step="1" min="-30" max="30" value="0">
+        <span>30</span>
+      </div>
+
+      <div id="div ParamAngleY" style="border-width:1px; border-style:solid;">
+        <h4>ParamAngleY:<text id="ParamAngleY_text">0</text></h4>
+        <span>-30</span>
+        <input id="ParamAngleY" type="range" step="1" min="-30" max="30" value="0">
+        <span>30</span>
+      </div>
+
+      <div id="div ParamAngleZ" style="border-width:1px; border-style:solid;">
+        <h4>ParamAngleZ:<text id="ParamAngleZ_text">0</text></h4>
+        <span>-30</span>
+        <input id="ParamAngleZ" type="range" step="1" min="-30" max="30" value="0">
+        <span>30</span>
+      </div>
+
+      <div id="div ParamBrowLY" style="border-width:1px; border-style:solid;">
+        <h4>ParamBrowLY:<text id="ParamBrowLY_text">0</text></h4>
+        <span>-1</span>
+        <input id="ParamBrowLY" type="range" step="0.1" min="-1" max="1" value="0">
+        <span>1</span>
+      </div>
+
+      <div id="div ParamBrowRY" style="border-width:1px; border-style:solid;">
+        <h4>ParamBrowRY:<text id="ParamBrowRY_text">0</text></h4>
+        <span>-1</span>
+        <input id="ParamBrowRY" type="range" step="0.1" min="-1" max="1" value="0">
+        <span>1</span>
+      </div>
+
+      <div id="div ParamBrowLX" style="border-width:1px; border-style:solid;">
+        <h4>ParamBrowLX:<text id="ParamBrowLX_text">0</text></h4>
+        <span>-1</span>
+        <input id="ParamBrowLX" type="range" step="0.1" min="-1" max="1" value="0">
+        <span>1</span>
+      </div>
+
+      <div id="div ParamBrowRX" style="border-width:1px; border-style:solid;">
+        <h4>ParamBrowRX:<text id="ParamBrowRX_text">0</text></h4>
+        <span>-1</span>
+        <input id="ParamBrowRX" type="range" step="0.1" min="-1" max="1" value="0">
+        <span>1</span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="Standard_Params">
+    <div class="col">
+      <text>標準參數</text>
+      <div id="div" style="border-width:1px; border-style:solid;">
+        <h3 id="Standard_name">參數名稱</h3>
+        <text>最小值</text>
+        <input id="Standard_min_input" type="input" style="width:40px">
+        <input id="Standard_range" type="range" step="1" min="-30" max="30" value="0">
+        <text>最大值</text>
+        <input id="Standard_max_input" type="input" style="width:40px">
+      </div>
+      <select name="Standard_select" id="Standard_select"></select>
+    </div>
+  </div>
+
+  <div class="Special_Params">
+
+    <div class="col">
+      <text>特定參數</text>
+      <div id="div" style="border-width:1px; border-style:solid;">
+        <h3 id="Special_name">參數名稱</h3>
+        <text>最小值</text>
+        <input id="Special_min_input" type="input" style="width:40px">
+        <input id="Special_range" type="range" step="1" min="-30" max="30" value="0">
+        <text>最大值</text>
+        <input id="Special_max_input" type="input" style="width:40px">
+      </div>
+      <select name="Special_select" id="Special_select">
+      </select>
+    </div>
+
+  </div>
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    h4,
+    span {
+      font-size: 20px !important;
+    }
+
+    text {
+      color: rgb(32, 7, 7);
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    button {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      transition-duration: 0.3s;
+      transition-property: transform;
+      align-content: center;
+    }
+
+    button:hover {
+      background-color: rgb(192, 85, 147);
+    }
+
+    .Sliders {
+      position: absolute !important;
+      top: 80px;
+      left: 20%;
+    }
+
+    .Sliders .col div {
+      padding: 10px;
+    }
+
+    .Standard_Params {
+      position: absolute !important;
+      top: 10%;
+      right: 20%;
+    }
+
+    .Special_Params {
+      position: absolute !important;
+      top: 30%;
+      right: 20%;
+    }
+
+    .Standard_Params div {
+      padding: 20px;
+    }
+
+    .Special_Params div {
+      padding: 20px;
+    }
+  </style>
+
+
+
+</body>
+
+
+<script src="./main.js"></script>
+<script>
+  function resetParam() {
+
+    document.getElementById("ParamAngleX").value = 0;
+    document.getElementById("ParamAngleY").value = 0;
+    document.getElementById("ParamAngleZ").value = 0;
+    document.getElementById("ParamBrowLY").value = 0;
+    document.getElementById("ParamBrowRY").value = 0;
+    document.getElementById("ParamBrowLX").value = 0;
+    document.getElementById("ParamBrowRX").value = 0;
+
+    document.getElementById("ParamAngleX_text").innerText = document.getElementById("ParamAngleX").value;
+    document.getElementById("ParamAngleY_text").innerText = document.getElementById("ParamAngleY").value;
+    document.getElementById("ParamAngleZ_text").innerText = document.getElementById("ParamAngleZ").value;
+    document.getElementById("ParamBrowLY_text").innerText = document.getElementById("ParamBrowLY").value;
+    document.getElementById("ParamBrowRY_text").innerText = document.getElementById("ParamBrowRY").value;
+    document.getElementById("ParamBrowLX_text").innerText = document.getElementById("ParamBrowLX").value;
+    document.getElementById("ParamBrowRX_text").innerText = document.getElementById("ParamBrowRX").value;
+
+    runModel(view => {
+      val = 0;
+      //先傳到lapp delegate的view的參數
+      //綁定參數
+      view.angleX = val;
+      view.angleY = val;
+      view.angleZ = val;
+      view.eyeLOpen = 1;
+      view.eyeLSmile = 1;
+      view.eyeROpen = 1;
+      view.eyeRSmile = 1;
+      view.eyeBallX = val;
+      view.eyeBallY = val;
+      view.eyeBallForm = 0;
+      view.browLY = val;
+      view.browRY = val;
+      view.browLX = val;
+      view.browRX = val;
+      view.browLAngle = val;
+      view.browRAngle = val;
+      view.browLForm = val;
+      view.browRForm = val;
+      //mouth form
+      view.mouthForm = 1;
+      //mouth openY
+      view.mouthOpenY = 0;
+      view.cheek = val;
+      view.bodyAngleX = val;
+      view.bodyAngleY = val;
+      view.bodyAngleZ = val;
+      view.breath = val;
+      view.armLA = 0;
+      view.armRA = 0;
+      view.armLB = 0;
+      view.armRB = 0;
+      view.handL = 0;
+      view.handR = 0;
+      view.hairFront = val;
+      view.hairSide = 0;
+      view.hairBack = val;
+      view.hairFluffy = 0;
+      view.shoulderY = 1;
+      view.bustX = 1;
+      view.bustY = 1;
+      view.baseX = 0;
+      view.baseY = 0;
+    });
+  }
+
+  const standard = {}
+  standard['angleX'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
+  standard['angleY'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
+  standard['angleZ'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
+
+  standard['eyeLOpen'] = { 'min_value': '0', 'max_value': '2', 'default_value': '1' }
+  standard['eyeLSmile'] = { 'min_value': '0', 'max_value': '1', 'default_value': '1' }
+  standard['eyeROpen'] = { 'min_value': '0', 'max_value': '2', 'default_value': '1' }
+  standard['eyeRSmile'] = { 'min_value': '0', 'max_value': '1', 'default_value': '1' }
+
+  standard['eyeBallX'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '1' }
+  standard['eyeBallY'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '1' }
+  standard['eEyeBallForm'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '1' }
+
+  standard['browLY'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['browRY'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['browLX'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['browRX'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+
+  standard['browLAngle'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['browRAngle'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['browLForm'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['browRForm'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+
+  standard['mouthForm'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['mouthOpenY'] = { 'min_value': '0', 'max_value': '1', 'default_value': '0' }
+
+  standard['cheek'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
+
+  standard['bodyAngleX'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
+  standard['bodyAngleY'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
+  standard['bodyAngleZ'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
+
+  standard['breath'] = { 'min_value': '0', 'max_value': '1', 'default_value': '0' }
+
+  standard['armLA'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
+  standard['armRA'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
+  standard['armLB'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
+  standard['armRB'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
+
+  standard['handL'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
+  standard['handR'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
+
+  standard['hairFront'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['hairSide'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['hairBack'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['hairFluffy'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+
+  standard['shoulderY'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
+
+  standard['bustX'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['bustY'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['baseX'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
+  standard['baseY'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
+
+  const special = {}
+  special['tere'] = { 'min_value': '0', 'max_value': '1', 'default_value': '1' }
+  special['tear'] = { 'min_value': '0', 'max_value': '1', 'default_value': '0' }
+  special['scarf'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
+  special['faceForm'] = { 'min_value': '0', 'max_value': '1', 'default_value': '0' }
+  special['eyeForm'] = { 'min_value': '0', 'max_value': '1', 'default_value': '0' }
+  special['bodyUpper'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
+  special['handChangeR'] = { 'min_value': '0', 'max_value': '1', 'default_value': '0' }
+  special['handChangeL'] = { 'min_value': '0', 'max_value': '1', 'default_value': '0' }
+  special['handAngleR'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
+  special['handAngleL'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
+
+
+  const ParamAngleX = document.getElementById('ParamAngleX');
+  ParamAngleX.addEventListener('click', function (event) {
+    document.getElementById("ParamAngleX_text").innerText = document.getElementById("ParamAngleX").value;
+  });
+
+  const ParamAngleY = document.getElementById('ParamAngleY');
+  ParamAngleY.addEventListener('click', function (event) {
+    document.getElementById("ParamAngleY_text").innerText = document.getElementById("ParamAngleY").value;
+  });
+
+  const ParamAngleZ = document.getElementById('ParamAngleZ');
+  ParamAngleZ.addEventListener('click', function (event) {
+    document.getElementById("ParamAngleZ_text").innerText = document.getElementById("ParamAngleZ").value;
+  });
+
+  const ParamBrowLY = document.getElementById('ParamBrowLY');
+  ParamBrowLY.addEventListener('click', function (event) {
+    document.getElementById("ParamBrowLY_text").innerText = document.getElementById("ParamBrowLY").value;
+  });
+
+  const ParamBrowRY = document.getElementById('ParamBrowRY');
+  ParamBrowRY.addEventListener('click', function (event) {
+    document.getElementById("ParamBrowRY_text").innerText = document.getElementById("ParamBrowRY").value;
+  });
+
+  const ParamBrowLX = document.getElementById('ParamBrowLX');
+  ParamBrowLX.addEventListener('click', function (event) {
+    document.getElementById("ParamBrowLX_text").innerText = document.getElementById("ParamBrowLX").value;
+  });
+
+  const ParamBrowRX = document.getElementById('ParamBrowRX');
+  ParamBrowRX.addEventListener('click', function (event) {
+    document.getElementById("ParamBrowRX_text").innerText = document.getElementById("ParamBrowRX").value;
+  });
+
+  function addOptToSelect(data, data_id, select) {
+    // Special_range
+    var min = 0;
+    var max = Object.keys(data).length;
+
+    var data_select = document.getElementById(data_id[0]);
+    var data_name = document.getElementById(data_id[1]);
+    var data_min = document.getElementById(data_id[2]);
+    var data_max = document.getElementById(data_id[3]);
+    var data_value = document.getElementById(data_id[4]);
+
+    for (let i in data) {
+      console.log(i);
+      var opt = document.createElement('option');
+      opt.value = i;
+      opt.innerHTML = i;
+      select.appendChild(opt);
+    }
+
+    var std_value = data_select.value;
+
+    data_name.innerText = "參數名稱：" + std_value + " ：" + data[std_value].default_value;
+    data_min.value = data[std_value].min_value;
+    data_max.value = data[std_value].max_value;
+    data_value.min = data[std_value].min_value;
+    data_value.max = data[std_value].max_value;
+    data_value.value = data[std_value].default_value;
+  }
+
+  var standard_select = document.getElementById('Standard_select');
+  var special_select = document.getElementById('Special_select');
+  standard_select.addEventListener("click", function () {
+    var options = standard_select.querySelectorAll("option");
+    var count = options.length;
+    var std_value = standard_select.value;
+
+    document.getElementById('Standard_name').innerText = "參數名稱：" + std_value + " ：" + standard[std_value].default_value;
+    document.getElementById('Standard_min_input').value = standard[std_value].min_value;
+    document.getElementById('Standard_max_input').value = standard[std_value].max_value;
+    document.getElementById('Standard_range').min = standard[std_value].min_value;
+    document.getElementById('Standard_range').max = standard[std_value].max_value;
+    document.getElementById('Standard_range').value = standard[std_value].default_value;
+  });
+
+  special_select.addEventListener("click", function () {
+    var options = special_select.querySelectorAll("option");
+    var count = options.length;
+    var std_value = special_select.value;
+
+    document.getElementById('Special_name').innerText = "參數名稱：" + std_value + " ：" + special[std_value].default_value;
+    document.getElementById('Special_min_input').value = special[std_value].min_value;
+    document.getElementById('Special_max_input').value = special[std_value].max_value;
+    document.getElementById('Special_range').min = special[std_value].min_value;
+    document.getElementById('Special_range').max = special[std_value].max_value;
+    document.getElementById('Special_range').value = special[std_value].default_value;
+  });
+
+  standard_id = ['Standard_select', 'Standard_name', 'Standard_min_input', 'Standard_max_input', 'Standard_range']
+  special_id = ['Special_select', 'Special_name', 'Special_min_input', 'Special_max_input', 'Special_range']
+  addOptToSelect(standard, standard_id, document.getElementById('Standard_select'));
+  addOptToSelect(special, special_id, document.getElementById('Special_select'));
+
+  // <div id="div" style="border-width:1px; border-style:solid;">
+  //     <h3 id="Special_name">參數名稱</h3>
+  //     <text>最小值</text>
+  //     <input id="Special_min_input" type="input" style="width:40px">
+  //     <input id="Special_range" type="range" step="1" min="-30" max="30" value="0">
+  //     <text>最大值</text>
+  //     <input id="Special_max_input" type="input" style="width:40px">
+  //   </div>
+  //   <select name="Special_select" id="Special_select">
+
+
+  const Standard_range = document.getElementById('Standard_range');
+  const Standard_select = document.getElementById('Standard_select');
+  Standard_range.addEventListener('change', function (event) {
+    document.getElementById("Standard_name").innerText = "參數名稱：" + Standard_select.value + " ：" + Standard_range.value;
+
+    runModel(view => {
+      var id = document.getElementById("Standard_select").value;
+      val = document.getElementById("Standard_range").value;
+      //先傳到lapp delegate的view的參數
+      //綁定參數
+      if (id === 'angleX') view.angleX = val;
+      if (id === 'angleY') view.angleY = val;
+      if (id === 'angleZ') view.angleZ = val;
+      if (id === 'eyeLOpen') view.eyeLOpen = val;
+      if (id === 'eyeLSmile') view.eyeLSmile = val;
+      if (id === 'eyeROpen') view.eyeROpen = val;
+      if (id === 'eyeRSmile') view.eyeRSmile = val;
+      if (id === 'eyeBallX') view.eyeBallX = val;
+      if (id === 'eyeBallY') view.eyeBallY = val;
+      if (id === 'eyeBallForm') view.eyeBallForm = val;
+      if (id === 'browLY') view.browLY = val;
+      if (id === 'browRY') view.browRY = val;
+      if (id === 'browLX') view.browLX = val;
+      if (id === 'browRX') view.browRX = val;
+      if (id === 'browLAngle') view.browLAngle = val;
+      if (id === 'browRAngle') view.browRAngle = val;
+      if (id === 'browLForm') view.browLForm = val;
+      if (id === 'browRForm') view.browRForm = val;
+      //mouth form
+      if (id === 'mouthForm') view.mouthForm = val;
+      //mouth openY
+      if (id === 'mouthOpenY') view.mouthOpenY = val;
+      if (id === 'cheek') view.cheek = val;
+      if (id === 'bodyAngleX') view.bodyAngleX = val;
+      if (id === 'bodyAngleY') view.bodyAngleY = val;
+      if (id === 'bodyAngleZ') view.bodyAngleZ = val;
+      if (id === 'breath') view.breath = val;
+      if (id === 'armLA') view.armLA = val;
+      if (id === 'armRA') view.armRA = val;
+      if (id === 'armLB') view.armLB = val;
+      if (id === 'armRB') view.armRB = val;
+      if (id === 'handL') view.handL = val;
+      if (id === 'handR') view.handR = val;
+      if (id === 'hairFront') view.hairFront = val;
+      if (id === 'hairSide') view.hairSide = val;
+      if (id === 'hairBack') view.hairBack = val;
+      if (id === 'hairFluffy') view.hairFluffy = val;
+      if (id === 'shoulderY') view.shoulderY = val;
+      if (id === 'bustX') view.bustX = val;
+      if (id === 'bustY') view.bustY = val;
+      if (id === 'baseX') view.baseX = val;
+      if (id === 'baseY') view.baseY = val;
+    });
+
+  });
+
+  const Special_range = document.getElementById('Special_range');
+  const Special_select = document.getElementById('Special_select');
+  Special_range.addEventListener('change', function (event) {
+    document.getElementById("Special_name").innerText = "參數名稱：" + Special_select.value + " ：" + Special_range.value;
+
+    runModel(view => {
+      var id = document.getElementById("Special_select").value;
+      val = document.getElementById("Special_range").value;
+      //先傳到lapp delegate的view的參數
+      //綁定參數
+      if (id === 'tere') view.tere = val;
+      if (id === 'tear') view.tear = val;
+      if (id === 'scarf') view.scarf = val;
+      if (id === 'faceForm') view.faceForm = val;
+      if (id === 'eyeForm') view.eyeForm = val;
+      if (id === 'bodyUpper') view.bodyUpper = val;
+      if (id === 'handChangeR') view.handChangeR = val;
+      if (id === 'handChangeL') view.handChangeL = val;
+      if (id === 'handAngleR') view.handAngleR = val;
+      if (id === 'handAngleL') view.handAngleL = val;
+
+
+    });
+  });
+
+
+  runModel(view => {
+    var id = document.getElementById("Special_select").value;
+    val = document.getElementById("Special_range").value;
+    //先傳到lapp delegate的view的參數
+    //綁定參數
+    if (id === 'tere') view.tere = val;
+    if (id === 'tear') view.tear = val;
+    if (id === 'scarf') view.scarf = val;
+    if (id === 'faceForm') view.faceForm = val;
+    if (id === 'eyeForm') view.eyeForm = val;
+    if (id === 'bodyUpper') view.bodyUpper = val;
+    if (id === 'handChangeR') view.handChangeR = val;
+    if (id === 'handChangeL') view.handChangeL = val;
+    if (id === 'handAngleR') view.handAngleR = val;
+    if (id === 'handAngleL') view.handAngleL = val;
+
+    var id = document.getElementById("Standard_select").value;
+    val = document.getElementById("Standard_range").value;
+    //先傳到lapp delegate的view的參數
+    //綁定參數
+    if (id === 'angleX') view.angleX = val;
+    if (id === 'angleY') view.angleY = val;
+    if (id === 'angleZ') view.angleZ = val;
+    if (id === 'eyeLOpen') view.eyeLOpen = val;
+    if (id === 'eyeLSmile') view.eyeLSmile = val;
+    if (id === 'eyeROpen') view.eyeROpen = val;
+    if (id === 'eyeRSmile') view.eyeRSmile = val;
+    if (id === 'eyeBallX') view.eyeBallX = val;
+    if (id === 'eyeBallY') view.eyeBallY = val;
+    if (id === 'eyeBallForm') view.eyeBallForm = val;
+    if (id === 'browLY') view.browLY = val;
+    if (id === 'browRY') view.browRY = val;
+    if (id === 'browLX') view.browLX = val;
+    if (id === 'browRX') view.browRX = val;
+    if (id === 'browLAngle') view.browLAngle = val;
+    if (id === 'browRAngle') view.browRAngle = val;
+    if (id === 'browLForm') view.browLForm = val;
+    if (id === 'browRForm') view.browRForm = val;
+    //mouth form
+    if (id === 'mouthForm') view.mouthForm = val;
+    //mouth openY
+    if (id === 'mouthOpenY') view.mouthOpenY = val;
+    if (id === 'cheek') view.cheek = val;
+    if (id === 'bodyAngleX') view.bodyAngleX = val;
+    if (id === 'bodyAngleY') view.bodyAngleY = val;
+    if (id === 'bodyAngleZ') view.bodyAngleZ = val;
+    if (id === 'breath') view.breath = val;
+    if (id === 'armLA') view.armLA = val;
+    if (id === 'armRA') view.armRA = val;
+    if (id === 'armLB') view.armLB = val;
+    if (id === 'armRB') view.armRB = val;
+    if (id === 'handL') view.handL = val;
+    if (id === 'handR') view.handR = val;
+    if (id === 'hairFront') view.hairFront = val;
+    if (id === 'hairSide') view.hairSide = val;
+    if (id === 'hairBack') view.hairBack = val;
+    if (id === 'hairFluffy') view.hairFluffy = val;
+    if (id === 'shoulderY') view.shoulderY = val;
+    if (id === 'bustX') view.bustX = val;
+    if (id === 'bustY') view.bustY = val;
+    if (id === 'baseX') view.baseX = val;
+    if (id === 'baseY') view.baseY = val;
+  });
+
+</script>
+
+</html>
