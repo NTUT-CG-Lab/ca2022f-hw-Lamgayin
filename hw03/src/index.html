@@ -173,9 +173,6 @@
       padding: 20px;
     }
   </style>
-
-
-
 </body>
 
 
@@ -330,7 +327,7 @@
       view.baseX = 0;
       view.baseY = 0;
     });
-    }
+  }
 
   function addOptToSelect(data, data_id, select) {
     // Special_range
@@ -361,73 +358,12 @@
     data_value.value = data[std_value].default_value;
   }
 
-  
-  ParamAngleX.addEventListener('click', function (event) {
-    document.getElementById("ParamAngleX_text").innerText = document.getElementById("ParamAngleX").value;
-  });
-
-  ParamAngleY.addEventListener('click', function (event) {
-    document.getElementById("ParamAngleY_text").innerText = document.getElementById("ParamAngleY").value;
-  });
-
-  ParamAngleZ.addEventListener('click', function (event) {
-    document.getElementById("ParamAngleZ_text").innerText = document.getElementById("ParamAngleZ").value;
-  });
-
-  ParamBrowLY.addEventListener('click', function (event) {
-    document.getElementById("ParamBrowLY_text").innerText = document.getElementById("ParamBrowLY").value;
-  });
-
-  ParamBrowRY.addEventListener('click', function (event) {
-    document.getElementById("ParamBrowRY_text").innerText = document.getElementById("ParamBrowRY").value;
-  });
-  
-  ParamBrowLX.addEventListener('click', function (event) {
-    document.getElementById("ParamBrowLX_text").innerText = document.getElementById("ParamBrowLX").value;
-  });
-
-  ParamBrowRX.addEventListener('click', function (event) {
-    document.getElementById("ParamBrowRX_text").innerText = document.getElementById("ParamBrowRX").value;
-  });
-
-  // 標準參數事件
-  standard_select.addEventListener("change", function () {
-    var options = standard_select.querySelectorAll("option");
-    var count = options.length;
-    var std_value = standard_select.value;
-
-    document.getElementById('Standard_name').innerText = "參數名稱：" + std_value + " ：" + standard[std_value].default_value;
-    document.getElementById('Standard_min_input').value = standard[std_value].min_value;
-    document.getElementById('Standard_max_input').value = standard[std_value].max_value;
-    document.getElementById('Standard_range').min = standard[std_value].min_value;
-    document.getElementById('Standard_range').max = standard[std_value].max_value;
-    document.getElementById('Standard_range').value = standard[std_value].default_value;
-  });
-
-  //特定參數事件
-  special_select.addEventListener("change", function () {
-    var options = special_select.querySelectorAll("option");
-    var count = options.length;
-    var std_value = special_select.value;
-
-    document.getElementById('Special_name').innerText = "參數名稱：" + std_value + " ：" + special[std_value].default_value;
-    document.getElementById('Special_min_input').value = special[std_value].min_value;
-    document.getElementById('Special_max_input').value = special[std_value].max_value;
-    document.getElementById('Special_range').min = special[std_value].min_value;
-    document.getElementById('Special_range').max = special[std_value].max_value;
-    document.getElementById('Special_range').value = special[std_value].default_value;
-  });
-
-  //標準參數和特定參數，Select Bar添加參數
-  addOptToSelect(standard, standard_id, document.getElementById('Standard_select'));
-  addOptToSelect(special, special_id, document.getElementById('Special_select'));
-
-  Standard_range.addEventListener('change', function (event) {
-  document.getElementById("Standard_name").innerText = "參數名稱：" + Standard_select.value + " ：" + Standard_range.value;
+  function updateStandard() {
+    document.getElementById("Standard_name").innerText = "參數名稱：" + Standard_select.value + " ：" + Standard_range.value;
 
     runModel(view => {
       var id = document.getElementById("Standard_select").value;
-      standard[id].default_value=document.getElementById("Standard_range").value;
+      standard[id].default_value = document.getElementById("Standard_range").value;
       //先傳到lapp delegate的view的參數
       //綁定參數
       if (id === 'angleX') view.angleX = standard[id].default_value;
@@ -472,11 +408,10 @@
       if (id === 'bustY') view.bustY = standard[id].default_value;
       if (id === 'baseX') view.baseX = standard[id].default_value;
       if (id === 'baseY') view.baseY = standard[id].default_value;
-      });
+    });
+  }
 
-  });
-
-  Special_range.addEventListener('change', function (event) {
+  function updateSpecial() {
     document.getElementById("Special_name").innerText = "參數名稱：" + Special_select.value + " ：" + Special_range.value;
 
     runModel(view => {
@@ -496,71 +431,82 @@
       if (id === 'handAngleL') view.handAngleL = special[id].default_value;
 
     });
+  };
+
+  ParamAngleX.addEventListener('click', function (event) {
+    document.getElementById("ParamAngleX_text").innerText = document.getElementById("ParamAngleX").value;
   });
 
-  runModel(view => {
-    var id = document.getElementById("Special_select").value;
-    special[id].default_value=document.getElementById("Special_range").value;
-    //先傳到lapp delegate的view的參數
-    //綁定參數
-    if (id === 'tere') view.tere = special[id].default_value;
-    if (id === 'tear') view.tear = special[id].default_value;
-    if (id === 'scarf') view.scarf = special[id].default_value;
-    if (id === 'faceForm') view.faceForm = special[id].default_value;
-    if (id === 'eyeForm') view.eyeForm = special[id].default_value;
-    if (id === 'bodyUpper') view.bodyUpper = special[id].default_value;
-    if (id === 'handChangeR') view.handChangeR = special[id].default_value;
-    if (id === 'handChangeL') view.handChangeL = special[id].default_value;
-    if (id === 'handAngleR') view.handAngleR = special[id].default_value;
-    if (id === 'handAngleL') view.handAngleL = special[id].default_value;
-
-    var id = document.getElementById("Standard_select").value;
-    standard[id].default_value=document.getElementById("Standard_range").value;
-    //先傳到lapp delegate的view的參數
-    //綁定參數
-    if (id === 'angleX') view.angleX = standard[id].default_value;
-    if (id === 'angleY') view.angleY = standard[id].default_value;
-    if (id === 'angleZ') view.angleZ = standard[id].default_value;
-    if (id === 'eyeLOpen') view.eyeLOpen = standard[id].default_value;
-    if (id === 'eyeLSmile') view.eyeLSmile = standard[id].default_value;
-    if (id === 'eyeROpen') view.eyeROpen = standard[id].default_value;
-    if (id === 'eyeRSmile') view.eyeRSmile = standard[id].default_value;
-    if (id === 'eyeBallX') view.eyeBallX = standard[id].default_value;
-    if (id === 'eyeBallY') view.eyeBallY = standard[id].default_value;
-    if (id === 'eyeBallForm') view.eyeBallForm = standard[id].default_value;
-    if (id === 'browLY') view.browLY = standard[id].default_value;
-    if (id === 'browRY') view.browRY = standard[id].default_value;
-    if (id === 'browLX') view.browLX = standard[id].default_value;
-    if (id === 'browRX') view.browRX = standard[id].default_value;
-    if (id === 'browLAngle') view.browLAngle = standard[id].default_value;
-    if (id === 'browRAngle') view.browRAngle = standard[id].default_value;
-    if (id === 'browLForm') view.browLForm = standard[id].default_value;
-    if (id === 'browRForm') view.browRForm = standard[id].default_value;
-    //mouth form
-    if (id === 'mouthForm') view.mouthForm = standard[id].default_value;
-    //mouth openY
-    if (id === 'mouthOpenY') view.mouthOpenY = standard[id].default_value;
-    if (id === 'cheek') view.cheek = standard[id].default_value;
-    if (id === 'bodyAngleX') view.bodyAngleX = standard[id].default_value;
-    if (id === 'bodyAngleY') view.bodyAngleY = standard[id].default_value;
-    if (id === 'bodyAngleZ') view.bodyAngleZ = standard[id].default_value;
-    if (id === 'breath') view.breath = standard[id].default_value;
-    if (id === 'armLA') view.armLA = standard[id].default_value;
-    if (id === 'armRA') view.armRA = standard[id].default_value;
-    if (id === 'armLB') view.armLB = standard[id].default_value;
-    if (id === 'armRB') view.armRB = standard[id].default_value;
-    if (id === 'handL') view.handL = standard[id].default_value;
-    if (id === 'handR') view.handR = standard[id].default_value;
-    if (id === 'hairFront') view.hairFront = standard[id].default_value;
-    if (id === 'hairSide') view.hairSide = standard[id].default_value;
-    if (id === 'hairBack') view.hairBack = standard[id].default_value;
-    if (id === 'hairFluffy') view.hairFluffy = standard[id].default_value;
-    if (id === 'shoulderY') view.shoulderY = standard[id].default_value;
-    if (id === 'bustX') view.bustX = standard[id].default_value;
-    if (id === 'bustY') view.bustY = standard[id].default_value;
-    if (id === 'baseX') view.baseX = standard[id].default_value;
-    if (id === 'baseY') view.baseY = standard[id].default_value;
+  ParamAngleY.addEventListener('click', function (event) {
+    document.getElementById("ParamAngleY_text").innerText = document.getElementById("ParamAngleY").value;
   });
+
+  ParamAngleZ.addEventListener('click', function (event) {
+    document.getElementById("ParamAngleZ_text").innerText = document.getElementById("ParamAngleZ").value;
+  });
+
+  ParamBrowLY.addEventListener('click', function (event) {
+    document.getElementById("ParamBrowLY_text").innerText = document.getElementById("ParamBrowLY").value;
+  });
+
+  ParamBrowRY.addEventListener('click', function (event) {
+    document.getElementById("ParamBrowRY_text").innerText = document.getElementById("ParamBrowRY").value;
+  });
+
+  ParamBrowLX.addEventListener('click', function (event) {
+    document.getElementById("ParamBrowLX_text").innerText = document.getElementById("ParamBrowLX").value;
+  });
+
+  ParamBrowRX.addEventListener('click', function (event) {
+    document.getElementById("ParamBrowRX_text").innerText = document.getElementById("ParamBrowRX").value;
+  });
+
+  // 標準參數Options事件
+  standard_select.addEventListener("change", function () {
+    var options = standard_select.querySelectorAll("option");
+    var count = options.length;
+    var std_value = standard_select.value;
+
+    document.getElementById('Standard_name').innerText = "參數名稱：" + std_value + " ：" + standard[std_value].default_value;
+    document.getElementById('Standard_min_input').value = standard[std_value].min_value;
+    document.getElementById('Standard_max_input').value = standard[std_value].max_value;
+    document.getElementById('Standard_range').min = standard[std_value].min_value;
+    document.getElementById('Standard_range').max = standard[std_value].max_value;
+    document.getElementById('Standard_range').value = standard[std_value].default_value;
+  });
+
+  //特定參數Options事件
+  special_select.addEventListener("change", function () {
+    var options = special_select.querySelectorAll("option");
+    var count = options.length;
+    var std_value = special_select.value;
+
+    document.getElementById('Special_name').innerText = "參數名稱：" + std_value + " ：" + special[std_value].default_value;
+    document.getElementById('Special_min_input').value = special[std_value].min_value;
+    document.getElementById('Special_max_input').value = special[std_value].max_value;
+    document.getElementById('Special_range').min = special[std_value].min_value;
+    document.getElementById('Special_range').max = special[std_value].max_value;
+    document.getElementById('Special_range').value = special[std_value].default_value;
+  });
+
+  //標準參數數值監聽事件
+  Standard_range.addEventListener('change', function (event) {
+    updateStandard();
+  });
+
+  //特定參數數值監聽事件
+  Special_range.addEventListener('change', function (event) {
+    updateSpecial();
+  });
+
+  //標準參數和特定參數，Select Bar添加參數
+  addOptToSelect(standard, standard_id, document.getElementById('Standard_select'));
+  addOptToSelect(special, special_id, document.getElementById('Special_select'));
+
+  //第一次更新狀態
+  updateStandard();
+  updateSpecial();
 
 </script>
+
 </html>
