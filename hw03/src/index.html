@@ -108,8 +108,7 @@
         <text>最大值</text>
         <input id="Special_max_input" type="input" style="width:40px">
       </div>
-      <select name="Special_select" id="Special_select">
-      </select>
+      <select name="Special_select" id="Special_select"></select>
     </div>
 
   </div>
@@ -157,13 +156,13 @@
     .Standard_Params {
       position: absolute !important;
       top: 10%;
-      right: 20%;
+      right: 10%;
     }
 
     .Special_Params {
       position: absolute !important;
       top: 30%;
-      right: 20%;
+      right: 10%;
     }
 
     .Standard_Params div {
@@ -182,6 +181,90 @@
 
 <script src="./main.js"></script>
 <script>
+  var standard = {}
+  standard['angleX'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
+  standard['angleY'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
+  standard['angleZ'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
+
+  standard['eyeLOpen'] = { 'min_value': '0', 'max_value': '2', 'default_value': '1' }
+  standard['eyeLSmile'] = { 'min_value': '0', 'max_value': '1', 'default_value': '1' }
+  standard['eyeROpen'] = { 'min_value': '0', 'max_value': '2', 'default_value': '1' }
+  standard['eyeRSmile'] = { 'min_value': '0', 'max_value': '1', 'default_value': '1' }
+
+  standard['eyeBallX'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '1' }
+  standard['eyeBallY'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '1' }
+  standard['eEyeBallForm'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '1' }
+
+  standard['browLY'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['browRY'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['browLX'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['browRX'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+
+  standard['browLAngle'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['browRAngle'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['browLForm'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['browRForm'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+
+  standard['mouthForm'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['mouthOpenY'] = { 'min_value': '0', 'max_value': '1', 'default_value': '0' }
+
+  standard['cheek'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
+
+  standard['bodyAngleX'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
+  standard['bodyAngleY'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
+  standard['bodyAngleZ'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
+
+  standard['breath'] = { 'min_value': '0', 'max_value': '1', 'default_value': '0' }
+
+  standard['armLA'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
+  standard['armRA'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
+  standard['armLB'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
+  standard['armRB'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
+
+  standard['handL'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
+  standard['handR'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
+
+  standard['hairFront'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['hairSide'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['hairBack'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['hairFluffy'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+
+  standard['shoulderY'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
+
+  standard['bustX'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['bustY'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
+  standard['baseX'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
+  standard['baseY'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
+
+  var special = {}
+  special['tere'] = { 'min_value': '0', 'max_value': '1', 'default_value': '1' }
+  special['tear'] = { 'min_value': '0', 'max_value': '1', 'default_value': '0' }
+  special['scarf'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
+  special['faceForm'] = { 'min_value': '0', 'max_value': '1', 'default_value': '0' }
+  special['eyeForm'] = { 'min_value': '0', 'max_value': '1', 'default_value': '0' }
+  special['bodyUpper'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
+  special['handChangeR'] = { 'min_value': '0', 'max_value': '1', 'default_value': '0' }
+  special['handChangeL'] = { 'min_value': '0', 'max_value': '1', 'default_value': '0' }
+  special['handAngleR'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
+  special['handAngleL'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
+
+  var standard_select = document.getElementById('Standard_select');
+  var special_select = document.getElementById('Special_select');
+  const Standard_range = document.getElementById('Standard_range');
+  const Standard_select = document.getElementById('Standard_select');
+  const Special_range = document.getElementById('Special_range');
+  const Special_select = document.getElementById('Special_select');
+  const ParamAngleX = document.getElementById('ParamAngleX');
+  const ParamAngleY = document.getElementById('ParamAngleY');
+  const ParamAngleZ = document.getElementById('ParamAngleZ');
+  const ParamBrowLY = document.getElementById('ParamBrowLY');
+  const ParamBrowRY = document.getElementById('ParamBrowRY');
+  const ParamBrowLX = document.getElementById('ParamBrowLX');
+  const ParamBrowRX = document.getElementById('ParamBrowRX');
+
+  standard_id = ['Standard_select', 'Standard_name', 'Standard_min_input', 'Standard_max_input', 'Standard_range'];
+  special_id = ['Special_select', 'Special_name', 'Special_min_input', 'Special_max_input', 'Special_range'];
+
   function resetParam() {
 
     document.getElementById("ParamAngleX").value = 0;
@@ -247,110 +330,7 @@
       view.baseX = 0;
       view.baseY = 0;
     });
-  }
-
-  const standard = {}
-  standard['angleX'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
-  standard['angleY'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
-  standard['angleZ'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
-
-  standard['eyeLOpen'] = { 'min_value': '0', 'max_value': '2', 'default_value': '1' }
-  standard['eyeLSmile'] = { 'min_value': '0', 'max_value': '1', 'default_value': '1' }
-  standard['eyeROpen'] = { 'min_value': '0', 'max_value': '2', 'default_value': '1' }
-  standard['eyeRSmile'] = { 'min_value': '0', 'max_value': '1', 'default_value': '1' }
-
-  standard['eyeBallX'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '1' }
-  standard['eyeBallY'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '1' }
-  standard['eEyeBallForm'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '1' }
-
-  standard['browLY'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
-  standard['browRY'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
-  standard['browLX'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
-  standard['browRX'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
-
-  standard['browLAngle'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
-  standard['browRAngle'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
-  standard['browLForm'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
-  standard['browRForm'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
-
-  standard['mouthForm'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
-  standard['mouthOpenY'] = { 'min_value': '0', 'max_value': '1', 'default_value': '0' }
-
-  standard['cheek'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
-
-  standard['bodyAngleX'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
-  standard['bodyAngleY'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
-  standard['bodyAngleZ'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
-
-  standard['breath'] = { 'min_value': '0', 'max_value': '1', 'default_value': '0' }
-
-  standard['armLA'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
-  standard['armRA'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
-  standard['armLB'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
-  standard['armRB'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
-
-  standard['handL'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
-  standard['handR'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
-
-  standard['hairFront'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
-  standard['hairSide'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
-  standard['hairBack'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
-  standard['hairFluffy'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
-
-  standard['shoulderY'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
-
-  standard['bustX'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
-  standard['bustY'] = { 'min_value': '-1', 'max_value': '1', 'default_value': '0' }
-  standard['baseX'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
-  standard['baseY'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
-
-  const special = {}
-  special['tere'] = { 'min_value': '0', 'max_value': '1', 'default_value': '1' }
-  special['tear'] = { 'min_value': '0', 'max_value': '1', 'default_value': '0' }
-  special['scarf'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
-  special['faceForm'] = { 'min_value': '0', 'max_value': '1', 'default_value': '0' }
-  special['eyeForm'] = { 'min_value': '0', 'max_value': '1', 'default_value': '0' }
-  special['bodyUpper'] = { 'min_value': '-10', 'max_value': '10', 'default_value': '0' }
-  special['handChangeR'] = { 'min_value': '0', 'max_value': '1', 'default_value': '0' }
-  special['handChangeL'] = { 'min_value': '0', 'max_value': '1', 'default_value': '0' }
-  special['handAngleR'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
-  special['handAngleL'] = { 'min_value': '-30', 'max_value': '30', 'default_value': '0' }
-
-
-  const ParamAngleX = document.getElementById('ParamAngleX');
-  ParamAngleX.addEventListener('click', function (event) {
-    document.getElementById("ParamAngleX_text").innerText = document.getElementById("ParamAngleX").value;
-  });
-
-  const ParamAngleY = document.getElementById('ParamAngleY');
-  ParamAngleY.addEventListener('click', function (event) {
-    document.getElementById("ParamAngleY_text").innerText = document.getElementById("ParamAngleY").value;
-  });
-
-  const ParamAngleZ = document.getElementById('ParamAngleZ');
-  ParamAngleZ.addEventListener('click', function (event) {
-    document.getElementById("ParamAngleZ_text").innerText = document.getElementById("ParamAngleZ").value;
-  });
-
-  const ParamBrowLY = document.getElementById('ParamBrowLY');
-  ParamBrowLY.addEventListener('click', function (event) {
-    document.getElementById("ParamBrowLY_text").innerText = document.getElementById("ParamBrowLY").value;
-  });
-
-  const ParamBrowRY = document.getElementById('ParamBrowRY');
-  ParamBrowRY.addEventListener('click', function (event) {
-    document.getElementById("ParamBrowRY_text").innerText = document.getElementById("ParamBrowRY").value;
-  });
-
-  const ParamBrowLX = document.getElementById('ParamBrowLX');
-  ParamBrowLX.addEventListener('click', function (event) {
-    document.getElementById("ParamBrowLX_text").innerText = document.getElementById("ParamBrowLX").value;
-  });
-
-  const ParamBrowRX = document.getElementById('ParamBrowRX');
-  ParamBrowRX.addEventListener('click', function (event) {
-    document.getElementById("ParamBrowRX_text").innerText = document.getElementById("ParamBrowRX").value;
-  });
+    }
 
   function addOptToSelect(data, data_id, select) {
     // Special_range
@@ -381,9 +361,37 @@
     data_value.value = data[std_value].default_value;
   }
 
-  var standard_select = document.getElementById('Standard_select');
-  var special_select = document.getElementById('Special_select');
-  standard_select.addEventListener("click", function () {
+  
+  ParamAngleX.addEventListener('click', function (event) {
+    document.getElementById("ParamAngleX_text").innerText = document.getElementById("ParamAngleX").value;
+  });
+
+  ParamAngleY.addEventListener('click', function (event) {
+    document.getElementById("ParamAngleY_text").innerText = document.getElementById("ParamAngleY").value;
+  });
+
+  ParamAngleZ.addEventListener('click', function (event) {
+    document.getElementById("ParamAngleZ_text").innerText = document.getElementById("ParamAngleZ").value;
+  });
+
+  ParamBrowLY.addEventListener('click', function (event) {
+    document.getElementById("ParamBrowLY_text").innerText = document.getElementById("ParamBrowLY").value;
+  });
+
+  ParamBrowRY.addEventListener('click', function (event) {
+    document.getElementById("ParamBrowRY_text").innerText = document.getElementById("ParamBrowRY").value;
+  });
+  
+  ParamBrowLX.addEventListener('click', function (event) {
+    document.getElementById("ParamBrowLX_text").innerText = document.getElementById("ParamBrowLX").value;
+  });
+
+  ParamBrowRX.addEventListener('click', function (event) {
+    document.getElementById("ParamBrowRX_text").innerText = document.getElementById("ParamBrowRX").value;
+  });
+
+  // 標準參數事件
+  standard_select.addEventListener("change", function () {
     var options = standard_select.querySelectorAll("option");
     var count = options.length;
     var std_value = standard_select.value;
@@ -396,7 +404,8 @@
     document.getElementById('Standard_range').value = standard[std_value].default_value;
   });
 
-  special_select.addEventListener("click", function () {
+  //特定參數事件
+  special_select.addEventListener("change", function () {
     var options = special_select.querySelectorAll("option");
     var count = options.length;
     var std_value = special_select.value;
@@ -409,168 +418,149 @@
     document.getElementById('Special_range').value = special[std_value].default_value;
   });
 
-  standard_id = ['Standard_select', 'Standard_name', 'Standard_min_input', 'Standard_max_input', 'Standard_range']
-  special_id = ['Special_select', 'Special_name', 'Special_min_input', 'Special_max_input', 'Special_range']
+  //標準參數和特定參數，Select Bar添加參數
   addOptToSelect(standard, standard_id, document.getElementById('Standard_select'));
   addOptToSelect(special, special_id, document.getElementById('Special_select'));
 
-  // <div id="div" style="border-width:1px; border-style:solid;">
-  //     <h3 id="Special_name">參數名稱</h3>
-  //     <text>最小值</text>
-  //     <input id="Special_min_input" type="input" style="width:40px">
-  //     <input id="Special_range" type="range" step="1" min="-30" max="30" value="0">
-  //     <text>最大值</text>
-  //     <input id="Special_max_input" type="input" style="width:40px">
-  //   </div>
-  //   <select name="Special_select" id="Special_select">
-
-
-  const Standard_range = document.getElementById('Standard_range');
-  const Standard_select = document.getElementById('Standard_select');
   Standard_range.addEventListener('change', function (event) {
-    document.getElementById("Standard_name").innerText = "參數名稱：" + Standard_select.value + " ：" + Standard_range.value;
+  document.getElementById("Standard_name").innerText = "參數名稱：" + Standard_select.value + " ：" + Standard_range.value;
 
     runModel(view => {
       var id = document.getElementById("Standard_select").value;
-      val = document.getElementById("Standard_range").value;
+      standard[id].default_value=document.getElementById("Standard_range").value;
       //先傳到lapp delegate的view的參數
       //綁定參數
-      if (id === 'angleX') view.angleX = val;
-      if (id === 'angleY') view.angleY = val;
-      if (id === 'angleZ') view.angleZ = val;
-      if (id === 'eyeLOpen') view.eyeLOpen = val;
-      if (id === 'eyeLSmile') view.eyeLSmile = val;
-      if (id === 'eyeROpen') view.eyeROpen = val;
-      if (id === 'eyeRSmile') view.eyeRSmile = val;
-      if (id === 'eyeBallX') view.eyeBallX = val;
-      if (id === 'eyeBallY') view.eyeBallY = val;
-      if (id === 'eyeBallForm') view.eyeBallForm = val;
-      if (id === 'browLY') view.browLY = val;
-      if (id === 'browRY') view.browRY = val;
-      if (id === 'browLX') view.browLX = val;
-      if (id === 'browRX') view.browRX = val;
-      if (id === 'browLAngle') view.browLAngle = val;
-      if (id === 'browRAngle') view.browRAngle = val;
-      if (id === 'browLForm') view.browLForm = val;
-      if (id === 'browRForm') view.browRForm = val;
+      if (id === 'angleX') view.angleX = standard[id].default_value;
+      if (id === 'angleY') view.angleY = standard[id].default_value;
+      if (id === 'angleZ') view.angleZ = standard[id].default_value;
+      if (id === 'eyeLOpen') view.eyeLOpen = standard[id].default_value;
+      if (id === 'eyeLSmile') view.eyeLSmile = standard[id].default_value;
+      if (id === 'eyeROpen') view.eyeROpen = standard[id].default_value;
+      if (id === 'eyeRSmile') view.eyeRSmile = standard[id].default_value;
+      if (id === 'eyeBallX') view.eyeBallX = standard[id].default_value;
+      if (id === 'eyeBallY') view.eyeBallY = standard[id].default_value;
+      if (id === 'eyeBallForm') view.eyeBallForm = standard[id].default_value;
+      if (id === 'browLY') view.browLY = standard[id].default_value;
+      if (id === 'browRY') view.browRY = standard[id].default_value;
+      if (id === 'browLX') view.browLX = standard[id].default_value;
+      if (id === 'browRX') view.browRX = standard[id].default_value;
+      if (id === 'browLAngle') view.browLAngle = standard[id].default_value;
+      if (id === 'browRAngle') view.browRAngle = standard[id].default_value;
+      if (id === 'browLForm') view.browLForm = standard[id].default_value;
+      if (id === 'browRForm') view.browRForm = standard[id].default_value;
       //mouth form
-      if (id === 'mouthForm') view.mouthForm = val;
+      if (id === 'mouthForm') view.mouthForm = standard[id].default_value;
       //mouth openY
-      if (id === 'mouthOpenY') view.mouthOpenY = val;
-      if (id === 'cheek') view.cheek = val;
-      if (id === 'bodyAngleX') view.bodyAngleX = val;
-      if (id === 'bodyAngleY') view.bodyAngleY = val;
-      if (id === 'bodyAngleZ') view.bodyAngleZ = val;
-      if (id === 'breath') view.breath = val;
-      if (id === 'armLA') view.armLA = val;
-      if (id === 'armRA') view.armRA = val;
-      if (id === 'armLB') view.armLB = val;
-      if (id === 'armRB') view.armRB = val;
-      if (id === 'handL') view.handL = val;
-      if (id === 'handR') view.handR = val;
-      if (id === 'hairFront') view.hairFront = val;
-      if (id === 'hairSide') view.hairSide = val;
-      if (id === 'hairBack') view.hairBack = val;
-      if (id === 'hairFluffy') view.hairFluffy = val;
-      if (id === 'shoulderY') view.shoulderY = val;
-      if (id === 'bustX') view.bustX = val;
-      if (id === 'bustY') view.bustY = val;
-      if (id === 'baseX') view.baseX = val;
-      if (id === 'baseY') view.baseY = val;
-    });
+      if (id === 'mouthOpenY') view.mouthOpenY = standard[id].default_value;
+      if (id === 'cheek') view.cheek = standard[id].default_value;
+      if (id === 'bodyAngleX') view.bodyAngleX = standard[id].default_value;
+      if (id === 'bodyAngleY') view.bodyAngleY = standard[id].default_value;
+      if (id === 'bodyAngleZ') view.bodyAngleZ = standard[id].default_value;
+      if (id === 'breath') view.breath = standard[id].default_value;
+      if (id === 'armLA') view.armLA = standard[id].default_value;
+      if (id === 'armRA') view.armRA = standard[id].default_value;
+      if (id === 'armLB') view.armLB = standard[id].default_value;
+      if (id === 'armRB') view.armRB = standard[id].default_value;
+      if (id === 'handL') view.handL = standard[id].default_value;
+      if (id === 'handR') view.handR = standard[id].default_value;
+      if (id === 'hairFront') view.hairFront = standard[id].default_value;
+      if (id === 'hairSide') view.hairSide = standard[id].default_value;
+      if (id === 'hairBack') view.hairBack = standard[id].default_value;
+      if (id === 'hairFluffy') view.hairFluffy = standard[id].default_value;
+      if (id === 'shoulderY') view.shoulderY = standard[id].default_value;
+      if (id === 'bustX') view.bustX = standard[id].default_value;
+      if (id === 'bustY') view.bustY = standard[id].default_value;
+      if (id === 'baseX') view.baseX = standard[id].default_value;
+      if (id === 'baseY') view.baseY = standard[id].default_value;
+      });
 
   });
 
-  const Special_range = document.getElementById('Special_range');
-  const Special_select = document.getElementById('Special_select');
   Special_range.addEventListener('change', function (event) {
     document.getElementById("Special_name").innerText = "參數名稱：" + Special_select.value + " ：" + Special_range.value;
 
     runModel(view => {
       var id = document.getElementById("Special_select").value;
-      val = document.getElementById("Special_range").value;
+      special[id].default_value = document.getElementById("Special_range").value;
       //先傳到lapp delegate的view的參數
       //綁定參數
-      if (id === 'tere') view.tere = val;
-      if (id === 'tear') view.tear = val;
-      if (id === 'scarf') view.scarf = val;
-      if (id === 'faceForm') view.faceForm = val;
-      if (id === 'eyeForm') view.eyeForm = val;
-      if (id === 'bodyUpper') view.bodyUpper = val;
-      if (id === 'handChangeR') view.handChangeR = val;
-      if (id === 'handChangeL') view.handChangeL = val;
-      if (id === 'handAngleR') view.handAngleR = val;
-      if (id === 'handAngleL') view.handAngleL = val;
-
+      if (id === 'tere') view.tere = special[id].default_value;
+      if (id === 'tear') view.tear = special[id].default_value;
+      if (id === 'scarf') view.scarf = special[id].default_value;
+      if (id === 'faceForm') view.faceForm = special[id].default_value;
+      if (id === 'eyeForm') view.eyeForm = special[id].default_value;
+      if (id === 'bodyUpper') view.bodyUpper = special[id].default_value;
+      if (id === 'handChangeR') view.handChangeR = special[id].default_value;
+      if (id === 'handChangeL') view.handChangeL = special[id].default_value;
+      if (id === 'handAngleR') view.handAngleR = special[id].default_value;
+      if (id === 'handAngleL') view.handAngleL = special[id].default_value;
 
     });
   });
 
-
   runModel(view => {
     var id = document.getElementById("Special_select").value;
-    val = document.getElementById("Special_range").value;
+    special[id].default_value=document.getElementById("Special_range").value;
     //先傳到lapp delegate的view的參數
     //綁定參數
-    if (id === 'tere') view.tere = val;
-    if (id === 'tear') view.tear = val;
-    if (id === 'scarf') view.scarf = val;
-    if (id === 'faceForm') view.faceForm = val;
-    if (id === 'eyeForm') view.eyeForm = val;
-    if (id === 'bodyUpper') view.bodyUpper = val;
-    if (id === 'handChangeR') view.handChangeR = val;
-    if (id === 'handChangeL') view.handChangeL = val;
-    if (id === 'handAngleR') view.handAngleR = val;
-    if (id === 'handAngleL') view.handAngleL = val;
+    if (id === 'tere') view.tere = special[id].default_value;
+    if (id === 'tear') view.tear = special[id].default_value;
+    if (id === 'scarf') view.scarf = special[id].default_value;
+    if (id === 'faceForm') view.faceForm = special[id].default_value;
+    if (id === 'eyeForm') view.eyeForm = special[id].default_value;
+    if (id === 'bodyUpper') view.bodyUpper = special[id].default_value;
+    if (id === 'handChangeR') view.handChangeR = special[id].default_value;
+    if (id === 'handChangeL') view.handChangeL = special[id].default_value;
+    if (id === 'handAngleR') view.handAngleR = special[id].default_value;
+    if (id === 'handAngleL') view.handAngleL = special[id].default_value;
 
     var id = document.getElementById("Standard_select").value;
-    val = document.getElementById("Standard_range").value;
+    standard[id].default_value=document.getElementById("Standard_range").value;
     //先傳到lapp delegate的view的參數
     //綁定參數
-    if (id === 'angleX') view.angleX = val;
-    if (id === 'angleY') view.angleY = val;
-    if (id === 'angleZ') view.angleZ = val;
-    if (id === 'eyeLOpen') view.eyeLOpen = val;
-    if (id === 'eyeLSmile') view.eyeLSmile = val;
-    if (id === 'eyeROpen') view.eyeROpen = val;
-    if (id === 'eyeRSmile') view.eyeRSmile = val;
-    if (id === 'eyeBallX') view.eyeBallX = val;
-    if (id === 'eyeBallY') view.eyeBallY = val;
-    if (id === 'eyeBallForm') view.eyeBallForm = val;
-    if (id === 'browLY') view.browLY = val;
-    if (id === 'browRY') view.browRY = val;
-    if (id === 'browLX') view.browLX = val;
-    if (id === 'browRX') view.browRX = val;
-    if (id === 'browLAngle') view.browLAngle = val;
-    if (id === 'browRAngle') view.browRAngle = val;
-    if (id === 'browLForm') view.browLForm = val;
-    if (id === 'browRForm') view.browRForm = val;
+    if (id === 'angleX') view.angleX = standard[id].default_value;
+    if (id === 'angleY') view.angleY = standard[id].default_value;
+    if (id === 'angleZ') view.angleZ = standard[id].default_value;
+    if (id === 'eyeLOpen') view.eyeLOpen = standard[id].default_value;
+    if (id === 'eyeLSmile') view.eyeLSmile = standard[id].default_value;
+    if (id === 'eyeROpen') view.eyeROpen = standard[id].default_value;
+    if (id === 'eyeRSmile') view.eyeRSmile = standard[id].default_value;
+    if (id === 'eyeBallX') view.eyeBallX = standard[id].default_value;
+    if (id === 'eyeBallY') view.eyeBallY = standard[id].default_value;
+    if (id === 'eyeBallForm') view.eyeBallForm = standard[id].default_value;
+    if (id === 'browLY') view.browLY = standard[id].default_value;
+    if (id === 'browRY') view.browRY = standard[id].default_value;
+    if (id === 'browLX') view.browLX = standard[id].default_value;
+    if (id === 'browRX') view.browRX = standard[id].default_value;
+    if (id === 'browLAngle') view.browLAngle = standard[id].default_value;
+    if (id === 'browRAngle') view.browRAngle = standard[id].default_value;
+    if (id === 'browLForm') view.browLForm = standard[id].default_value;
+    if (id === 'browRForm') view.browRForm = standard[id].default_value;
     //mouth form
-    if (id === 'mouthForm') view.mouthForm = val;
+    if (id === 'mouthForm') view.mouthForm = standard[id].default_value;
     //mouth openY
-    if (id === 'mouthOpenY') view.mouthOpenY = val;
-    if (id === 'cheek') view.cheek = val;
-    if (id === 'bodyAngleX') view.bodyAngleX = val;
-    if (id === 'bodyAngleY') view.bodyAngleY = val;
-    if (id === 'bodyAngleZ') view.bodyAngleZ = val;
-    if (id === 'breath') view.breath = val;
-    if (id === 'armLA') view.armLA = val;
-    if (id === 'armRA') view.armRA = val;
-    if (id === 'armLB') view.armLB = val;
-    if (id === 'armRB') view.armRB = val;
-    if (id === 'handL') view.handL = val;
-    if (id === 'handR') view.handR = val;
-    if (id === 'hairFront') view.hairFront = val;
-    if (id === 'hairSide') view.hairSide = val;
-    if (id === 'hairBack') view.hairBack = val;
-    if (id === 'hairFluffy') view.hairFluffy = val;
-    if (id === 'shoulderY') view.shoulderY = val;
-    if (id === 'bustX') view.bustX = val;
-    if (id === 'bustY') view.bustY = val;
-    if (id === 'baseX') view.baseX = val;
-    if (id === 'baseY') view.baseY = val;
+    if (id === 'mouthOpenY') view.mouthOpenY = standard[id].default_value;
+    if (id === 'cheek') view.cheek = standard[id].default_value;
+    if (id === 'bodyAngleX') view.bodyAngleX = standard[id].default_value;
+    if (id === 'bodyAngleY') view.bodyAngleY = standard[id].default_value;
+    if (id === 'bodyAngleZ') view.bodyAngleZ = standard[id].default_value;
+    if (id === 'breath') view.breath = standard[id].default_value;
+    if (id === 'armLA') view.armLA = standard[id].default_value;
+    if (id === 'armRA') view.armRA = standard[id].default_value;
+    if (id === 'armLB') view.armLB = standard[id].default_value;
+    if (id === 'armRB') view.armRB = standard[id].default_value;
+    if (id === 'handL') view.handL = standard[id].default_value;
+    if (id === 'handR') view.handR = standard[id].default_value;
+    if (id === 'hairFront') view.hairFront = standard[id].default_value;
+    if (id === 'hairSide') view.hairSide = standard[id].default_value;
+    if (id === 'hairBack') view.hairBack = standard[id].default_value;
+    if (id === 'hairFluffy') view.hairFluffy = standard[id].default_value;
+    if (id === 'shoulderY') view.shoulderY = standard[id].default_value;
+    if (id === 'bustX') view.bustX = standard[id].default_value;
+    if (id === 'bustY') view.bustY = standard[id].default_value;
+    if (id === 'baseX') view.baseX = standard[id].default_value;
+    if (id === 'baseY') view.baseY = standard[id].default_value;
   });
 
 </script>
-
 </html>
