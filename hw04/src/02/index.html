@@ -60,13 +60,40 @@ limitations under the License.
     #top-bar label{
       font-size: 30px;
     }
+
     #top-bar input,button {
       width: 400px;
       margin-top: 10px;
     }
 
+    @media (max-width: 1080px) {
+      #top-bar {
+          width: 300px;
+          text-align: center;
+          margin: auto;
+          display: block;
+          flex-direction: row;
+          position: center;
+      }
+
+      #top-bar label{
+      font-size: 16px;
+    }
+
+      #top-bar input,button {
+      width: 100px;
+      margin-top: 10px;
+      font-size: 14px;
+      }
+      #canvas-wrapper{
+        position: relative;
+      }
+
+    }
+
     #_mq{
-      width: 40%;
+      margin-top: 10px;
+      width: 70%;
     }
 
    
