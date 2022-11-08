@@ -202,14 +202,16 @@
   <!-- ------------------------------------------------>
   <div class="row hw12">
     <div class="col-md-12 twenty">
-      作業程式碼，請放在 src 檔案夾。
+      作業程式碼，請放在 src 檔案夾。<input type="button" name="back" onclick="parent.location='./src/01/index.html?model=mediapipe_face_mesh'"
+      value="...live video..."><input type="button" name="back" onclick="parent.location='./src/02/index.html?model=mediapipe_face_mesh'"
+      value="...upload video...">
     </div>
   </div>
 
   <!-- ------------------------------------------------>
   <div class="row hw12">
     <div class="col-md-12 twenty">
-      心得報告 100 字。心得報告 100 字。心得報告 100 字。心得報告 100 字。心得報告 100 字。心得報告 100 字。心得報告 100 字。心得報告 100 字。心得報告 100 字。心得報告 100 字。心得報告 100 字。心得報告 100 字。心得報告 100 字。心得報告 100 字。心得報告 100 字。心得報告 100 字。心得報告 100 字。心得報告 100 字。
+      這次主要是利用google tensorflow的開源套件在實作出一個人臉偵測，還挺有趣的，之後可能是會偵測臉部後，再用辨識的資料去控制live2d動畫。但是在upload video，由於比較吃顯示卡資源，所以掉幀掉的蠻嚴重的。
     </div>
   </div>
 
@@ -225,40 +227,30 @@
         </tr>
         <tr>
           <td rowspan="7" id="myTotal"></td>
-          <td><input type="checkbox" class="flipswitch" id="myCheckbox1"></td>
-          <td id='m1'>1</td>
-          <td>描述</td>
+          <td><input type="checkbox" class="flipswitch" id="myCheckbox1" checked></td>
+          <td id='m1'>4</td>
+          <td>Simple Baseline: 下載專案成功編譯
+          </td>
         </tr>
         <tr>
           <td><input type="checkbox" class="flipswitch" id="myCheckbox2" checked></td>
-          <td id='m2'>1</td>
-          <td>描述</td>
+          <td id='m2'>3</td>
+          <td>Medium Baseline: 將編譯好的檔案放到github class room上的hw04，並且網頁上能夠成功使用
+          </td>
         </tr>
         <tr>
-          <td><input type="checkbox" class="flipswitch" id="myCheckbox3"></td>
+          <td><input type="checkbox" class="flipswitch" id="myCheckbox3" checked></td>
           <td id='m3'>1</td>
-          <td>描述</td>
+          <td>Medium Baseline: 錄製一段live_video的Demo影片(1920*1080 )制
+          </td>
         </tr>
         <tr>
           <td><input type="checkbox" class="flipswitch" id="myCheckbox4" checked></td>
-          <td id='m4'>1</td>
-          <td>描述</td>
+          <td id='m4'>2</td>
+          <td>Strong Baseline: 成功編譯建置upload_video並且錄製Demo影片(1920*1080 )
+          </td>
         </tr>
-        <tr>
-          <td><input type="checkbox" class="flipswitch" id="myCheckbox5" checked="checked" ></td>
-          <td id='m5'>2</td>
-          <td>描述</td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" class="flipswitch" id="myCheckbox6" checked="checked" /></td>
-          <td id='m6'>2</td>
-          <td>描述</td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" class="flipswitch" id="myCheckbox7" checked="checked" /></td>
-          <td id='m7'>2</td>
-          <td>描述</td>
-        </tr>
+
       </table>
     </div>
   </div>
@@ -267,13 +259,12 @@
   <div class="row hw12">
     <div class="col-md-12 twenty">
       <video id="video1" style="width:100%;max-width:100%;" controls="">
-        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        <source src="./hw04.mp4" type="video/mp4">
       </video>
     </div>
   </div>
 
   <!-- ------------------------------------------------>
-
 
 
 <script>

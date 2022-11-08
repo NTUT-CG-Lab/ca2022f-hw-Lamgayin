@@ -1,0 +1,130 @@
+<!-- Copyright 2022 Google LLC. All Rights Reserved.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+==============================================================================-->
+<!DOCTYPE html>
+<html>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0, user-scalable=no">
+  <style>
+    body {
+      margin: 0;
+      background-color:lightsteelblue;
+    }
+
+    #main {
+      margin: 0;
+      position: relative;
+    }
+
+    #canvas-wrapper {
+      position: relative;
+      border-radius: 20px;
+      background-color: #6A4C9C;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    canvas {
+      position: absolute;
+      
+    }
+
+    #top-bar {
+      margin-bottom: 50px;
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      padding-top: 30px;
+      padding-bottom: 30px;
+      background-color: antiquewhite;
+      border-radius: 20px;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    #top-bar input,button :hover{
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    #top-bar label{
+      font-size: 30px;
+    }
+    #top-bar input,button {
+      width: 400px;
+      margin-top: 10px;
+    }
+
+    #_mq{
+      width: 40%;
+    }
+
+   
+  </style>
+</head>
+
+<body>
+  <div id="stats"></div>
+  <div id="main">
+    <div class="container">
+      <div id="top-bar">
+        <label for="videofile">Upload a video file(已經預載一個影片可以直接RUN):</label>
+        <input type="file" id="videofile" name="video" accept="video/*"  class="btn btn-success"></input>
+        <button id="submit"  class="btn btn-primary">Run</button>
+      </div>
+    </div>
+    <div class="container" id="t1">
+      <marquee id="_mq" scrollamount="5" behavior="alternate" ></marquee>
+    </div>
+    <div class="container" id="canvas-wrapper">
+      <canvas id="output" width="1280" height="720" ></canvas>
+      <video id="video">
+        <source id="currentVID" src="./峮峮「炸裂陳子豪」與炸裂本人！20220831.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="container">
+      <span id="status"></span>
+    </div>
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.6/dat.gui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
+<script src="./dist/src.a2b27638.js"></script>
+<script>
+  var flag = false;
+  function update_mq(){
+    var file = $("#videofile").val();
+    console.log(file)
+    var strFileName=file.replace(/^.+?\\([^\\]+?)(\.[^\.\\]*?)?$/gi,"$1");  //正則表示式獲取檔名，不帶字尾
+    var FileExt=file.replace(/.+\./,"");   //正則表示式獲取字尾
+
+    if(flag == false){
+      strFileName="峮峮「炸裂陳子豪」與炸裂本人！20220831";
+    }
+    var _mq = document.getElementById("_mq");
+    _mq.innerHTML = '<b style="color:red">現正火熱播出！</b>'+'<font color="black">'+strFileName+'</font>';
+  }
+
+  var _ip = document.getElementById("videofile");
+  _ip.addEventListener('change',function(event){
+    flag = true;
+    update_mq();
+  });
+
+  var _run = document.getElementById("submit");
+  _run.addEventListener('click',function(event){
+    update_mq();
+  });
+</script>
+</html>
